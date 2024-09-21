@@ -1,15 +1,15 @@
 /* Add box-sizing globally */
 * {
     box-sizing: border-box;
-  }
+}
   
-body {
+  body {
     margin: 0;
     font-family: Arial, sans-serif;
-  }
+}
   
   /* Navigation styling */
-.nav {
+  .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,12 +20,12 @@ body {
     background-color: white;
 }
   
-.logo img {
+  .logo img {
     width: 50px;
     height: 50px;
 }
   
-ul {
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -36,19 +36,20 @@ ul {
   ul li a {
     text-decoration: none;
     color: #328C56;
-  }
+}
   
   /* Content styling */
-.content {
+  .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 100px 20px 20px; /* Extra padding on top to accommodate for the fixed navbar */
     gap: 40px; /* Space between the text and the image */
     background-color: #328C56;
+    margin-top: 25px;
 }
   
-.text-content {
+  .text-content {
     flex: 1;
     max-width: 60%;
     font-size: 1em;
@@ -56,21 +57,50 @@ ul {
     color: white;
 }
   
-.text-content h1 {
+  .text-content h1 {
     font-size: 2em;
     margin-bottom: 20px;
     color: white;
 }
   
-.text-content h2 {
+  .text-content h2 {
     margin-top: 20px;
     font-size: 20px;
 }
   
-.image-content img {
+  .image-content img {
     width: 400px;
     height: 100%;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for aesthetic appeal */
     flex: 1;
+}
+  
+  /* Media query for smaller screens */
+@media (max-width: 768px) {
+    .content {
+      flex-direction: column; /* Stack the image on top of the text */
+      align-items: center; /* Center align both the text and the image */
+      padding: 60px 20px; /* Adjust padding for mobile devices */
+    }
+  
+    .image-content img {
+      width: 100%; /* Make the image take full width */
+      max-width: 500px; /* Limit the max-width for larger phones */
+      height: auto; /* Maintain the aspect ratio */
+      margin-bottom: 20px; /* Add space between the image and the text */
+    }
+  
+    .text-content {
+      max-width: 100%;
+      text-align: center; /* Center the text content */
+    }
+  
+    .text-content h1 {
+      font-size: 1.8em; /* Slightly reduce the font size for better readability */
+    }
+  
+    .text-content h2 {
+      font-size: 1.5em; /* Adjust the subtitle size */
+    }
 }
