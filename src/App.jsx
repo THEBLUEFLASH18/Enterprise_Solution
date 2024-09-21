@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import Logo from '/vite.svg'
+import logo from '/Enterprise_SolutionsV3.png'
 import './App.css'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <>
       <div className="nav">
           <div className="logo">
-            <img src='../public/Enterprise_SolutionsV3.png' alt="Logo" />
+            <img src={logo} alt="Logo" />
           </div>
           <div>
             <ul>
