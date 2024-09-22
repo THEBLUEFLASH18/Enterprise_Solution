@@ -18,6 +18,7 @@
     width: 100%;
     top: 0;
     background-color: white;
+    border-bottom: 2px solid #328C56;
 }
   
   .logo img {
