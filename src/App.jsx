@@ -62,7 +62,7 @@ function App() {
           {/* Employee 2 */}
           <div className="team-member">
             <img src={Employee2} alt="Employee 2" />
-            <h3>Adriana Gomez</h3>
+            <h3>Adriana</h3>
             <h4>Financial Advisor</h4>
             <p><strong>Experience:</strong> 12 years in financial planning and investment management.</p>
             <p>Jane assists clients in achieving their financial goals through personalized investment strategies.</p>
