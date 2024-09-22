@@ -16,6 +16,7 @@ function App() {
         <div>
           <ul>
             <li><a href="#About">About</a></li>
+            <li><a href="#Employees">Employees</a></li>
             <li><a href="#Values">Values</a></li>
             <li><a href="#Services">Services</a></li>
           </ul>
