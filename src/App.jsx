@@ -48,7 +48,7 @@ function App() {
       </div>
 
       {/* Meet the Team Section */}
-      <div className="team-section">
+      <div className="team-section" id="Employees">
         <h2>Meet the Team</h2>
         <div className="team-members">
           {/* Employee 1 */}
@@ -89,6 +89,40 @@ function App() {
           <img src={financeImage} alt="Finance Image" />
         </div>
       </div>
+
+     {/* Servicios Section */}
+<div className="services-section" id="Services">
+  <div>
+      {/* Title */}
+    <h2>NUESTROS SERVICIOS</h2>
+
+    {/* Information Paragraph */}
+    <p className="services-description">
+      Nuestro objetivo principal es brindarles a nuestros clientes un apoyo que abarque todas las áreas en el proceso de la contabilidad, ofreciendo los siguientes servicios:
+    </p>
+  </div>
+
+  {/* Services List */}
+  <div className="services-container">
+    <div className="service-box">
+      <ul>
+        <li>Conciliaciones Bancarias</li>
+        <li>Contabilidad y teneduría de libros</li>
+        <li>Presentación de informes financieros periódicos (Anuales, trimestrales y mensuales).</li>
+        <li>Análisis e interpretación de los estados Financieros.</li>
+      </ul>
+    </div>
+    <div className="service-box">
+      <ul>
+        <li>Presupuestos periódicos (Anuales, trimestrales y mensuales).</li>
+        <li>Declaraciones de Taxes individuales y de empresas.</li>
+        <li>Elaboración de facturas a sus clientes.</li>
+        <li>Elaboración de formas 1099</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
     </>
   );
 }

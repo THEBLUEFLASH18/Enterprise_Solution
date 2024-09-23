@@ -19,6 +19,7 @@
     top: 0;
     background-color: white;
     border-bottom: 2px solid #328C56;
+    height: 70px;
 }
   
   .logo img {
@@ -179,5 +180,64 @@
   .team-member {
     width: 80%;             /* Adjust width for better presentation */
     margin-bottom: 40px;    /* Space between team members */
+  }
+}
+
+/* Services Section styling */
+.services-section {
+  background-color: #FFFFFF;
+  color: #328C56;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.services-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.services-description {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* Borders removed */
+}
+
+.service-box {
+  width: 200px;
+  margin: 0 10px;
+  display: block; /* Added to reset display property */
+}
+
+.service-box ul {
+  list-style-type: disc;
+  margin: 0;
+  padding: 0 20px;
+  text-align: left;
+  display: block; /* Ensure ul is displayed as block */
+}
+
+.service-box li {
+  margin-bottom: 10px;
+  display: list-item; /* Ensure li elements display correctly */
+}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .services-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-box {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
   }
 }
