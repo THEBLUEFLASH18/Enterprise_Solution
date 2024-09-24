@@ -9,6 +9,7 @@
 }
   
   /* Navigation styling */
+/* Navigation styling */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -37,29 +38,26 @@
 .hamburger {
   width: 30px;
   height: 30px;
-  transition: transform 0.5s;
 }
 
-.hamburger.open {
-  transform: rotate(-45deg);
-}
-
-.line {
+.hamburger .line {
   fill: none;
   stroke: #328C56;
+  stroke-width: 4;
   stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3;
-  transition: stroke-dasharray 0.5s, stroke-dashoffset 0.5s;
-}
-
-.line-top-bottom {
-  stroke-dasharray: 12 63;
+  transition: all 0.3s ease;
 }
 
 .hamburger.open .line-top-bottom {
-  stroke-dasharray: 20 300;
-  stroke-dashoffset: -32.42;
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open .line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Navigation Links */
@@ -84,61 +82,6 @@
 .nav-links ul li {
   display: flex;
   align-items: center;
-}
-
-@media (max-width: 768px) {
-  .hamburger-menu {
-    display: block; /* Show hamburger on mobile */
-  }
-
-  .nav-links {
-    display: none; /* Hide nav links by default */
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    border-bottom: 2px solid #328C56;
-  }
-
-  .nav-links.open {
-    display: block; /* Show nav links when menu is open */
-  }
-
-  .nav-links ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 20px 0;
-  }
-
-  .nav-links ul li {
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-links ul li a {
-    color: #328C56;
-    font-size: 18px;
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  /* Adjust the contact button within the nav menu */
-  .nav-links ul li .contact-button {
-    width: 80%;
-    margin: 0 auto;
-    height: 3.5em;
-  }
-
-  .contact-button p {
-    top: 0.7em; /* Adjust positioning */
-  }
-
-  .contact-button svg {
-    top: 0.75em; /* Adjust positioning */
-  }
 }
 
 /* Contact Button Styling */
@@ -197,8 +140,45 @@
   transform: scale(0.97);
 }
 
+/* Media query for smaller screens */
 @media (max-width: 768px) {
-  /* ...existing styles... */
+  .hamburger-menu {
+    display: block; /* Show hamburger on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Hide nav links by default */
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    display: block; /* Show nav links when menu is open */
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+  }
+
+  .nav-links ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links ul li a {
+    color: #328C56;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+  }
 
   /* Adjust the contact button within the nav menu */
   .nav-links ul li .contact-button {
@@ -222,6 +202,80 @@
   .contact-button:hover .transition {
     width: 14em;
     height: 14em;
+  }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Higher than nav bar */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #328C56; /* Green background */
+  padding: 40px 20px;
+  border-radius: 10px;
+  color: white;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: white;
+  cursor: pointer;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebd5a;
+}
+
+/* WhatsApp Icon */
+.whatsapp-button i {
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+/* Responsive Modal Content */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 20px 10px;
+  }
+
+  .modal-close {
+    top: 5px;
+    right: 10px;
   }
 }
   

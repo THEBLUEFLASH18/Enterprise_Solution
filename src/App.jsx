@@ -9,6 +9,7 @@ import Employee2 from '/CoOwner.jpeg';
 function App() {
   // State variable to track menu open/close
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -20,15 +21,10 @@ function App() {
 
         {/* Hamburger Menu for Mobile */}
         <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <svg
-            viewBox="0 0 100 80"
-            width="30"
-            height="30"
-            className={`hamburger ${isMenuOpen ? 'open' : ''}`}
-          >
-            <rect width="100" height="10" rx="5" fill="#328C56"></rect>
-            <rect y="30" width="100" height="10" rx="5" fill="#328C56"></rect>
-            <rect y="60" width="100" height="10" rx="5" fill="#328C56"></rect>
+          <svg viewBox="0 0 32 32" className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
+            <path className="line line-top-bottom" d="M4 8H28"></path>
+            <path className="line" d="M4 16H28"></path>
+            <path className="line line-top-bottom" d="M4 24H28"></path>
           </svg>
         </div>
 
@@ -60,7 +56,10 @@ function App() {
               <button
                 className="contact-button"
                 aria-label="Contact Us"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsModalOpen(true); // Open the modal
+                }}
               >
                 <span className="transition"></span>
                 <span className="gradient"></span>
@@ -70,6 +69,27 @@ function App() {
           </ul>
         </div>
       </div>
+
+      {/* Modal Component */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setIsModalOpen(false)}>
+              &times;
+            </button>
+            <h2>Contact Us via WhatsApp</h2>
+            <p>We are here to assist you. Click the button below to start a WhatsApp chat with us.</p>
+            <a
+              href="https://wa.me/18137206541"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-button"
+            >
+              <i className="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* First Content Section */}
       <div className="content" id="About">
