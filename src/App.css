@@ -33,11 +33,61 @@
     padding: 0;
     display: flex;
     gap: 20px;
+    align-items: center;
 }
   
   ul li a {
     text-decoration: none;
     color: #328C56;
+}
+
+/* Contact Button Styling */
+.contact-button {
+  background-color: #fff;
+  border: 1px solid #328C56;
+  padding: 5px;
+  position: relative;
+  width: 7.2em;
+  height: 2em;
+  transition: 0.5s;
+  font-size: 17px;
+  border-radius: 0.4em;
+  cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+.contact-button p {
+  position: absolute;
+  top: 0.4em;
+  left: 1.15em;
+  margin: 0;
+  padding: 0;
+  transition: 0.5s;
+  color: #328C56;
+}
+
+.contact-button svg {
+  position: absolute;
+  top: 0.45em;
+  right: 0.5em;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: 0.5s;
+  height: 1em;
+  fill: #fff;
+}
+
+.contact-button:hover p {
+  left: 0.5em;
+  color: #fff;
+}
+
+.contact-button:hover svg {
+  opacity: 1;
+}
+
+.contact-button:hover {
+  background-color: #328C56;
 }
   
   /* Content styling */
