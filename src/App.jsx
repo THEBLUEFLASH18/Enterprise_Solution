@@ -34,22 +34,22 @@ function App() {
           <ul>
             <li>
               <a href="#About" onClick={() => setIsMenuOpen(false)}>
-                About
+                Sobre Nosotros
               </a>
             </li>
             <li>
               <a href="#Employees" onClick={() => setIsMenuOpen(false)}>
-                Employees
+                Empleados
               </a>
             </li>
             <li>
               <a href="#Values" onClick={() => setIsMenuOpen(false)}>
-                Values
+                Valores
               </a>
             </li>
             <li>
               <a href="#Services" onClick={() => setIsMenuOpen(false)}>
-                Services
+                Servicios
               </a>
             </li>
             {/* Contact Button */}
@@ -100,16 +100,16 @@ function App() {
 
         <div className="text-content">
           <h1>
-            C&G ENTERPRISE SOLUTIONS LLC <i className="fa-solid fa-coins"></i>
+            C&G ENTERPRISE SOLUTION LLC <i className="fa-solid fa-coins"></i>
           </h1>
           <p>
-            C&G ENTERPRISE SOLUTIONS LLC es una empresa dedicada al servicio de contabilidad y
+            C&G ENTERPRISE SOLUTION LLC es una empresa dedicada al servicio de contabilidad y
             preparación de declaraciones de impuestos individuales y de empresas. Asociarse con C&G
-            ENTERPRISE SOLUTIONS LLC significa que su negocio está en las mejores manos porque
+            ENTERPRISE SOLUTION LLC significa que su negocio está en las mejores manos porque
             contamos con un gran equipo de trabajo liderado por personas con una alta preparación
             académica con más de 20 años de experiencia en el área contable y financiera, adaptamos
             nuestros servicios a cada industria y a cada rubro de negocio, le ofrecemos atención
-            personalizada, confiable y de calidad. Para C&G ENTERPRISE SOLUTIONS LLC usted no solo
+            personalizada, confiable y de calidad. Para C&G ENTERPRISE SOLUTION LLC usted no solo
             es un cliente más, es un asociado valioso por el que nos esmeramos en brindarle lo mejor
             para el buen funcionamiento de sus finanzas y de su compañía.
           </p>
@@ -268,10 +268,10 @@ function App() {
         <div className='right-side'>
           <h4>Opciones</h4>
           <ul>
-            <li><a href='#About'>About</a></li>
-            <li><a href='#Employees'>Employees</a></li>
-            <li><a href='#Values'>Values</a></li>
-            <li><a href='#Services'>Services</a></li>
+            <li><a href='#About'>Sobre Nosotros</a></li>
+            <li><a href='#Employees'>Empleados</a></li>
+            <li><a href='#Values'>Valores</a></li>
+            <li><a href='#Services'>Servicios</a></li>
           </ul>
         </div>
       </div>
