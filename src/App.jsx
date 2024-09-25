@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from '/Enterprise_SolutionsV3.png';
 import financeImage from '/Finance_Desk.jpg';
 import taxImage from '/taxtable.jpg'
+import taxesImage from '/taxes.png'
 import moneyImage from '/Money.jpg'
 import './App.css';
 import Employee1 from '/Sandra.jpeg';
@@ -192,7 +193,7 @@ function App() {
         </div>
 
         <div className="image-content">
-          <img src={financeImage} alt="Finance Image" />
+          <img src={taxesImage} alt="Finance Image" />
         </div>
       </div>
 
