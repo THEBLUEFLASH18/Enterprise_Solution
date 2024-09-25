@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '/Enterprise_SolutionsV3.png';
 import financeImage from '/Finance_Desk.jpg';
 import taxImage from '/taxtable.jpg'
-import taxesImage from '/taxes.png'
+import taxesImage from '/taxes.jpg'
 import moneyImage from '/Money.jpg'
 import './App.css';
 import Employee1 from '/Sandra.jpeg';
