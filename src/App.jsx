@@ -234,7 +234,8 @@ function App() {
       {/* Footer Section */}
       <div className='Footer'>
         <div className='left-side'>
-          <h4>Nuestras Sociales <i class="fa-solid fa-globe"></i></h4>
+          <h4>Nuestras Sociales</h4>
+          <h4><i class="fa-solid fa-globe"></i></h4>
           <ul>
             <li>
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
