@@ -511,6 +511,10 @@
   margin: 0 40px; /* Simplified margin */
 }
 
+.img-footer h3 {
+  text-align: center;
+}
+
 /* Combine styles for left-side and right-side */
 .left-side, .right-side {
   display: flex;
