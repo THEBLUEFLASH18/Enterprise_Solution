@@ -516,7 +516,6 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* Center content horizontally */
-  border: 2px solid blue; /* Remove or adjust border as needed */
   width: 150px;
 }
 
