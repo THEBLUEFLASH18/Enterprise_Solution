@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import logo from '/Enterprise_SolutionsV3.png';
 import financeImage from '/Finance_Desk.jpg';
-import taxImage from '/taxtable.jpg'
-import taxesImage from '/taxes.jpg'
-import moneyImage from '/Money.jpg'
+import taxImage from '/taxtable.jpg';
+import taxesImage from '/taxes.png';
+import moneyImage from '/Money.jpg';
 import './App.css';
 import Employee1 from '/Sandra.jpeg';
 import Employee2 from '/CoOwner.jpeg';
 
 function App() {
-  // State variable to track menu open/close
+  // State variables
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -18,7 +18,7 @@ function App() {
       {/* Navigation Bar */}
       <div className="nav">
         <div className="logo">
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="C&G Enterprise Solutions LLC Logo" />
         </div>
 
         {/* Hamburger Menu for Mobile */}
@@ -96,7 +96,7 @@ function App() {
       {/* First Content Section */}
       <div className="content" id="About">
         <div className="image-content">
-          <img src={financeImage} alt="Finance Desk" />
+          <img src={financeImage} alt="Finance Desk showcasing accounting services" />
         </div>
 
         <div className="text-content">
@@ -133,7 +133,7 @@ function App() {
         </div>
 
         <div className="image-content">
-          <img src={moneyImage} alt="Company Values" />
+          <img src={moneyImage} alt="Visual representation of company values and financial growth" />
         </div>
       </div>
 
@@ -143,7 +143,7 @@ function App() {
         <div className="team-members">
           {/* Employee 1 */}
           <div className="team-member">
-            <img src={Employee1} alt="Sandra Cruz Palma" />
+            <img src={Employee1} alt="Sandra Cruz Palma, Socia y Directora Ejecutiva" />
             <h3>Sandra Cruz Palma</h3>
             <h4>Socia y Directora Ejecutiva</h4>
             <p>
@@ -152,11 +152,11 @@ function App() {
           </div>
           {/* Employee 2 */}
           <div className="team-member">
-            <img src={Employee2} alt="Employee 2" />
+            <img src={Employee2} alt="Adriana Gómez Zamora, Socia Y Consultora Fiscal/Financiera" />
             <h3>Adriana Gómez Zamora</h3>
             <h4>Socia Y Consultora Fiscal/ Financiera</h4>
             <p>
-            <strong>Experience: </strong>Cuento con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales y reportes financieros. Poseo una Maestría en Administración de Empresas con especialización en Finanzas y una Licenciatura en Contaduría Pública. He desempeñado roles como profesor, contador general, contador independiente y auditor. Tengo dominio de las normas IFRS, ISA y herramientas contables como SAP y QuickBooks, además de haber completado capacitación especializada en estándares de auditoría, leyes fiscales y métodos de educación moderna.
+              <strong>Experience: </strong>Cuento con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales y reportes financieros. Poseo una Maestría en Administración de Empresas con especialización en Finanzas y una Licenciatura en Contaduría Pública. He desempeñado roles como profesor, contador general, contador independiente y auditor. Tengo dominio de las normas IFRS, ISA y herramientas contables como SAP y QuickBooks, además de haber completado capacitación especializada en estándares de auditoría, leyes fiscales y métodos de educación moderna.
             </p>
           </div>
         </div>
@@ -165,7 +165,7 @@ function App() {
       {/* Valores Section */}
       <div className="content" id="Values">
         <div className="image-content">
-          <img src={taxImage} alt="Values Image" />
+          <img src={taxImage} alt="Illustration representing company values" />
         </div>
 
         <div className="text-content">
@@ -193,7 +193,7 @@ function App() {
         </div>
 
         <div className="image-content">
-          <img src={taxesImage} alt="Finance Image" />
+          <img src={taxesImage} alt="Financial services illustration emphasizing taxes" />
         </div>
       </div>
 
@@ -262,7 +262,7 @@ function App() {
         </div>
 
         <div className='img-footer'>
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="C&G Enterprise Solutions LLC Logo" />
           <h3>Enterprise Solution LLC&reg;</h3>
         </div>
 
