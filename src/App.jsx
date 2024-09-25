@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import logo from '/Enterprise_SolutionsV3.png';
 import financeImage from '/Finance_Desk.jpg';
-import valuesImage from '/Coffee.jpg';
+import taxImage from '/taxtable.jpg'
+import moneyImage from '/Money.jpg'
 import './App.css';
 import Employee1 from '/Sandra.jpeg';
 import Employee2 from '/CoOwner.jpeg';
@@ -131,7 +132,7 @@ function App() {
         </div>
 
         <div className="image-content">
-          <img src={valuesImage} alt="Company Values" />
+          <img src={moneyImage} alt="Company Values" />
         </div>
       </div>
 
@@ -143,7 +144,7 @@ function App() {
           <div className="team-member">
             <img src={Employee1} alt="Sandra Cruz Palma" />
             <h3>Sandra Cruz Palma</h3>
-            <h4>Directora Ejecutiva</h4>
+            <h4>Socia y Directora Ejecutiva</h4>
             <p>
               <strong>Experience: </strong>Cuento con más de 20 años de experiencia en las áreas administrativa, contable y financiera. Actualmente, poseo amplios conocimientos en el área de impuestos individuales y empresariales, lo que me permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de mis clientes.
             </p>
@@ -152,7 +153,7 @@ function App() {
           <div className="team-member">
             <img src={Employee2} alt="Employee 2" />
             <h3>Adriana Gómez Zamora</h3>
-            <h4>Contador Público Certificado y Profesional en Administración Empresarial</h4>
+            <h4>Socia Y Consultora Fiscal/ Financiera</h4>
             <p>
             <strong>Experience: </strong>Cuento con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales y reportes financieros. Poseo una Maestría en Administración de Empresas con especialización en Finanzas y una Licenciatura en Contaduría Pública. He desempeñado roles como profesor, contador general, contador independiente y auditor. Tengo dominio de las normas IFRS, ISA y herramientas contables como SAP y QuickBooks, además de haber completado capacitación especializada en estándares de auditoría, leyes fiscales y métodos de educación moderna.
             </p>
@@ -163,7 +164,7 @@ function App() {
       {/* Valores Section */}
       <div className="content" id="Values">
         <div className="image-content">
-          <img src={valuesImage} alt="Values Image" />
+          <img src={taxImage} alt="Values Image" />
         </div>
 
         <div className="text-content">
