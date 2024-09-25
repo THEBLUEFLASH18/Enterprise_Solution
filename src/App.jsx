@@ -64,7 +64,7 @@ function App() {
               >
                 <span className="transition"></span>
                 <span className="gradient"></span>
-                <span className="label">Contact Us</span>
+                <span className="label">Contactanos</span>
               </button>
             </li>
           </ul>
