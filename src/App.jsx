@@ -80,7 +80,7 @@ function App() {
             <h2>Contact Us via WhatsApp</h2>
             <p>We are here to assist you. Click the button below to start a WhatsApp chat with us.</p>
             <a
-              href="https://wa.me/18137206541"
+              href="https://wa.me/18134760188"
               target="_blank"
               rel="noopener noreferrer"
               className="whatsapp-button"
@@ -143,27 +143,18 @@ function App() {
           <div className="team-member">
             <img src={Employee1} alt="Sandra Cruz Palma" />
             <h3>Sandra Cruz Palma</h3>
-            <h4>Senior Accountant</h4>
+            <h4>Directora Ejecutiva</h4>
             <p>
-              <strong>Experience:</strong> 15 years in corporate accounting, specializing in
-              financial analysis and tax preparation.
-            </p>
-            <p>
-              Sandra is dedicated to helping clients understand their financial statements and
-              optimizing their tax strategies.
+              <strong>Experience: </strong>Cuento con más de 20 años de experiencia en las áreas administrativa, contable y financiera. Actualmente, poseo amplios conocimientos en el área de impuestos individuales y empresariales, lo que me permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de mis clientes.
             </p>
           </div>
           {/* Employee 2 */}
           <div className="team-member">
             <img src={Employee2} alt="Employee 2" />
-            <h3>Adriana</h3>
-            <h4>Financial Advisor</h4>
+            <h3>Adriana Gómez Zamora</h3>
+            <h4>Contador Público Certificado y Profesional en Administración Empresarial</h4>
             <p>
-              <strong>Experience:</strong> 12 years in financial planning and investment management.
-            </p>
-            <p>
-              Jane assists clients in achieving their financial goals through personalized
-              investment strategies.
+            <strong>Experience: </strong>Cuento con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales y reportes financieros. Poseo una Maestría en Administración de Empresas con especialización en Finanzas y una Licenciatura en Contaduría Pública. He desempeñado roles como profesor, contador general, contador independiente y auditor. Tengo dominio de las normas IFRS, ISA y herramientas contables como SAP y QuickBooks, además de haber completado capacitación especializada en estándares de auditoría, leyes fiscales y métodos de educación moderna.
             </p>
           </div>
         </div>
@@ -239,6 +230,51 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* Footer Section */}
+      <div className='Footer'>
+        <div className='left-side'>
+          <h4>Nuestras Sociales</h4>
+          <ul>
+            <li>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                Facebook <i className="fa-brands fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                Instagram <i className="fa-brands fa-square-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                LinkedIn <i className="fa-brands fa-linkedin"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+                Reviews <i className="fa-brands fa-google"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className='img-footer'>
+          <img src={logo} alt="Logo" />
+          <h3>Enterprise Solution LLC&reg;</h3>
+        </div>
+
+        <div className='right-side'>
+          <h4>Opciones</h4>
+          <ul>
+            <li><a href='#About'>About</a></li>
+            <li><a href='#Employees'>Employees</a></li>
+            <li><a href='#Values'>Values</a></li>
+            <li><a href='#Services'>Services</a></li>
+          </ul>
+        </div>
+      </div>
+
     </>
   );
 }
