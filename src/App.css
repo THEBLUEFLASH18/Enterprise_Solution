@@ -267,6 +267,31 @@
   font-size: 1.5em;
 }
 
+/* Email Button */
+.email-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #0072C6; /* Blue color for email */
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  margin-left: 10px; /* Space between buttons */
+}
+
+.email-button:hover {
+  background-color: #005a99;
+}
+
+/* Email Icon */
+.email-button i {
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
 /* Responsive Modal Content */
 @media (max-width: 480px) {
   .modal-content {
@@ -276,6 +301,13 @@
   .modal-close {
     top: 5px;
     right: 10px;
+  }
+
+  /* Stack buttons vertically on small screens */
+  .whatsapp-button,
+  .email-button {
+    margin-left: 0;
+    width: 100%;
   }
 }
   

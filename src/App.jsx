@@ -79,15 +79,27 @@ function App() {
             <button className="modal-close" onClick={() => setIsModalOpen(false)}>
               &times;
             </button>
-            <h2>Contact Us via WhatsApp</h2>
-            <p>We are here to assist you. Click the button below to start a WhatsApp chat with us.</p>
+            <h2>Contact Us</h2>
+            <p>We are here to assist you. Choose your preferred method below to get in touch with us.</p>
+            
+            {/* WhatsApp Contact Button */}
             <a
               href="https://wa.me/18134760188"
               target="_blank"
               rel="noopener noreferrer"
               className="whatsapp-button"
+              aria-label="Chat on WhatsApp"
             >
               <i className="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+
+            {/* Email Contact Button */}
+            <a
+              href="mailto:ventas@c-g-enterprise-solution.online"
+              className="email-button"
+              aria-label="Send an Email"
+            >
+              <i className="fas fa-envelope"></i> Send an Email
             </a>
           </div>
         </div>
