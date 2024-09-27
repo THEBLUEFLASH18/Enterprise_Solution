@@ -263,7 +263,7 @@ function App() {
 
         <div className='img-footer'>
           <img src={logo} alt="C&G Enterprise Solutions LLC Logo" />
-          <h3>Enterprise Solution LLC&reg;</h3>
+          <h3>C&G Enterprise Solution LLC&reg;</h3>
         </div>
 
         <div className='right-side'>
