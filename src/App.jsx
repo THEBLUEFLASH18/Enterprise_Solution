@@ -239,7 +239,7 @@ function App() {
               <li>Presupuestos periódicos (Anuales, trimestrales y mensuales).</li>
               <li>Declaraciones de Taxes individuales y de empresas.</li>
               <li>Elaboración de facturas a sus clientes.</li>
-              <li>Elaboración de formas 1099</li>
+              <li>Elaboración de formas 1099-MISC y 1099-NEC</li>
             </ul>
           </div>
         </div>
