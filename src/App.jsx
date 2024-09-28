@@ -159,7 +159,7 @@ function App() {
             <h3>Sandra Cruz Palma</h3>
             <h4>Socia y Directora Ejecutiva</h4>
             <p>
-              <strong>Experience: </strong>Cuento con más de 20 años de experiencia en las áreas administrativa, contable y financiera. Actualmente, poseo amplios conocimientos en el área de impuestos individuales y empresariales, lo que me permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de mis clientes.
+              <strong>Experience: </strong>Cuento con más de 20 años de experiencia en las áreas administrativa, contable y financiera. Actualmente, poseo amplios conocimientos en el área de impuestos individuales y empresariales, lo que me permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de mis clientes.Con un bachillerato en Administración de Empresas.
             </p>
           </div>
           {/* Employee 2 */}
