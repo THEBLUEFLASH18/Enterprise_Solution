@@ -95,7 +95,7 @@ function App() {
 
             {/* Email Contact Button */}
             <a
-              href="mailto:ventas@c-g-enterprise-solution.online"
+              href="mailto:ventas@cygsolution.com"
               className="email-button"
               aria-label="Send an Email"
             >
