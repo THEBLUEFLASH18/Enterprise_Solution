@@ -355,6 +355,23 @@
     font-size: 20px;
     color: white;
   }
+
+  /* Text content for the values section */
+
+  /* Updated Values Section */
+.values {
+  background-color: white; /* Switch to a light background */
+  color: #328C56; /* Darker text color (same as the main green) */
+}
+
+.values h2 {
+  color: #328C56; /* Heading color in the values section */
+}
+
+.values p {
+  color: #328C56; /* Text color in the values section */
+  font-weight: bold; /* Make the values stand out */
+}
   
   /* Media query for smaller screens */
   @media (max-width: 768px) {
@@ -385,8 +402,8 @@
 
 /* Meet the Team Section */
 .team-section {
-  background-color: #FFFFFF; /* White background */
-  color: #328C56;            /* Text color */
+  background-color: #328C56; /* White background */
+  color: white;            /* Text color */
   padding: 60px 20px;
   text-align: center;
 }
@@ -394,7 +411,7 @@
 .team-section h2 {
   font-size: 2em;
   margin-bottom: 40px;
-  color: #328C56; /* Heading color */
+  color: white; /* Heading color */
 }
 
 .team-members {
@@ -405,8 +422,8 @@
 }
 
 .team-member {
-  background-color: #FFFFFF; /* White background */
-  border: 5px solid #328C56; /* Border color */
+  background-color: #328C56; /* White background */
+  border: 5px solid white; /* Border color */
   padding: 20px;
   width: 300px;
   border-radius: 10px;
@@ -417,13 +434,13 @@
   height: auto;
   border-radius: 50%;
   margin-bottom: 20px;
-  border: 4px solid #328C56; /* Border color */
+  border: 4px solid white; /* Border color */
 }
 
 .team-member h3 {
   margin-top: 0;
   margin-bottom: 10px;
-  color: #328C56; /* Name color */
+  color: white; /* Name color */
 }
 
 .team-member h4 {
@@ -431,13 +448,13 @@
   margin-bottom: 20px;
   font-weight: normal;
   font-style: italic;
-  color: #328C56; /* Title color */
+  color: white; /* Title color */
 }
 
 .team-member p {
   margin-bottom: 10px;
   text-align: left;
-  color: #328C56; /* Paragraph text color */
+  color: white; /* Paragraph text color */
 }
 
 /* Media query for smaller screens */

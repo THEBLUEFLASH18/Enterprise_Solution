@@ -39,13 +39,13 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="#Employees" onClick={() => setIsMenuOpen(false)}>
-                Empleados
+              <a href="#Values" onClick={() => setIsMenuOpen(false)}>
+                Valores
               </a>
             </li>
             <li>
-              <a href="#Values" onClick={() => setIsMenuOpen(false)}>
-                Valores
+              <a href="#Employees" onClick={() => setIsMenuOpen(false)}>
+                Empleados
               </a>
             </li>
             <li>
@@ -149,38 +149,14 @@ function App() {
         </div>
       </div>
 
-      {/* Meet the Team Section */}
-      <div className="team-section" id="Employees">
-        <h2>Meet the Team</h2>
-        <div className="team-members">
-          {/* Employee 1 */}
-          <div className="team-member">
-            <img src={Employee1} alt="Sandra Cruz Palma, Socia y Directora Ejecutiva" />
-            <h3>Sandra Cruz Palma</h3>
-            <h4>Socia y Directora Ejecutiva</h4>
-            <p>
-              <strong>Experience: </strong>Cuento con más de 20 años de experiencia en las áreas administrativa, contable y financiera. Actualmente, poseo amplios conocimientos en el área de impuestos individuales y empresariales, lo que me permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de mis clientes.Con una Licenciatura en gerencia de negocios.
-            </p>
-          </div>
-          {/* Employee 2 */}
-          <div className="team-member">
-            <img src={Employee2} alt="Adriana Gómez Zamora, Socia Y Consultora Fiscal/Financiera" />
-            <h3>Adriana Gómez Zamora</h3>
-            <h4>Socia Y Consultora Fiscal/ Financiera</h4>
-            <p>
-              <strong>Experience: </strong>Cuento con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales y reportes financieros. Poseo una Maestría en Administración de Empresas con especialización en Finanzas y una Licenciatura en Contaduría Pública. He desempeñado roles como profesor, contador general, contador independiente y auditor. Tengo dominio de las normas IFRS, ISA y herramientas contables como SAP y QuickBooks, además de haber completado capacitación especializada en estándares de auditoría, leyes fiscales y métodos de educación moderna.
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Valores Section */}
-      <div className="content" id="Values">
+      <div className="content values" id="Values">
         <div className="image-content">
           <img src={taxImage} alt="Illustration representing company values" />
         </div>
 
-        <div className="text-content">
+        <div className="text-content values">
           <h2>VALORES</h2>
           <p>
             <strong>Responsabilidad:</strong> Puntualidad en la presentación de información
@@ -206,6 +182,35 @@ function App() {
 
         <div className="image-content">
           <img src={taxesImage} alt="Financial services illustration emphasizing taxes" />
+        </div>
+      </div>
+
+      {/* Meet the Team Section */}
+      <div className="team-section" id="Employees">
+        <h2>Conoce A Nuestro Equipo De Trabajo</h2>
+        <div className="team-members">
+          {/* Employee 1 */}
+          <div className="team-member">
+            <img src={Employee1} alt="Sandra Cruz Palma, Socia y Directora Ejecutiva" />
+            <h3>Sandra Cruz Palma</h3>
+            <h4>Socia</h4>
+            <h4>Directora Ejecutiva</h4>
+            <p>
+              <strong>Experiencia: </strong>Licenciada en gerencia de negocios, con más de 20 años de experiencia en las áreas administrativa, contable y financiera, con amplios conocimientos en el área de impuestos individuales y empresariales, lo que permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de nuestros clientes.
+
+            </p>
+          </div>
+          {/* Employee 2 */}
+          <div className="team-member">
+            <img src={Employee2} alt="Adriana Gómez Zamora, Socia Y Consultora Fiscal/Financiera" />
+            <h3>Adriana Gómez Zamora</h3>
+            <h4>Socia</h4>
+            <h4>Consultora Fiscal/ Financiera</h4>
+            <p>
+              <strong>Experiencia: </strong>Licenciada en Contaduría Pública y finanzas y Master en Administración de Empresas, con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales. Ha desempeñado roles como profesora universitaria, contadora general, contador independiente y auditora, con dominio de las normas IFRS, IAASB y herramientas contables como SAP y QuickBooks.
+
+            </p>
+          </div>
         </div>
       </div>
 
