@@ -256,12 +256,12 @@ function App() {
           <h4>Sociales</h4>
           <ul>
             <li>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/share/HcJLSEEMffhgtDVW/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
                 Facebook <i className="fa-brands fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/cygenterprisesolution?igsh=aWgwOHpwaTJsaDVr" target="_blank" rel="noopener noreferrer">
                 Instagram <i className="fa-brands fa-square-instagram"></i>
               </a>
             </li>
