@@ -199,6 +199,9 @@ function App() {
               <strong>Experiencia: </strong>Licenciada en gerencia de negocios, con más de 20 años de experiencia en las áreas administrativa, contable y financiera, con amplios conocimientos en el área de impuestos individuales y empresariales, lo que permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de nuestros clientes.
 
             </p>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                LinkedIn <i className="fa-brands fa-linkedin"></i>
+              </a>
           </div>
           {/* Employee 2 */}
           <div className="team-member">
@@ -210,6 +213,9 @@ function App() {
               <strong>Experiencia: </strong>Licenciada en Contaduría Pública y finanzas y Master en Administración de Empresas, con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales. Ha desempeñado roles como profesora universitaria, contadora general, contador independiente y auditora, con dominio de las normas IFRS, IAASB y herramientas contables como SAP y QuickBooks.
 
             </p>
+            <a href="https://www.linkedin.com/in/adriana-g%C3%B3mez-4a600640?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">
+                LinkedIn <i className="fa-brands fa-linkedin"></i>
+              </a>
           </div>
         </div>
       </div>
@@ -261,7 +267,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://www.instagram.com/cygenterprisesolution?igsh=aWgwOHpwaTJsaDVr" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/cygenterprisesolution?igsh=aWgwOHpwaTJsaDVr`" target="_blank" rel="noopener noreferrer">
                 Instagram <i className="fa-brands fa-square-instagram"></i>
               </a>
             </li>
