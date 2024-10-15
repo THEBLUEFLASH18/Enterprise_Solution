@@ -199,7 +199,7 @@ function App() {
               <strong>Experiencia: </strong>Licenciada en gerencia de negocios, con más de 20 años de experiencia en las áreas administrativa, contable y financiera, con amplios conocimientos en el área de impuestos individuales y empresariales, lo que permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de nuestros clientes.
 
             </p>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/sandra-cruz-palma-59a95924a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">
                 LinkedIn <i className="fa-brands fa-linkedin"></i>
               </a>
           </div>
