@@ -423,6 +423,10 @@
   gap: 40px;
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
+.team-member  a {
+  color: white;
+  text-decoration: none;
+}
 
 .team-member {
   background-color: #328C56; /* White background */
