@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '/Enterprise_SolutionsV3.png';
+import logo from '/New_logo.png';
 import financeImage from '/Finance_Desk.jpg';
 import taxImage from '/taxtable.jpg';
 import taxesImage from '/taxes.jpg';
