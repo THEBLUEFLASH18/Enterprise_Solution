@@ -7,6 +7,23 @@
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    background: #1f2937;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    z-index: 2000;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 20px;
+  }
   
   /* Navigation styling */
 /* Navigation styling */
@@ -33,6 +50,9 @@
 .hamburger-menu {
   display: none; /* Hidden on desktop */
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .hamburger {
@@ -82,6 +102,31 @@
 .nav-links ul li {
   display: flex;
   align-items: center;
+}
+
+.nav-links ul li button {
+  font-family: inherit;
+}
+
+.language-button {
+  font-size: 15px;
+  padding: 0.7em 1.2em;
+  font-weight: 600;
+  color: #328C56;
+  background: white;
+  border: 2px solid #328C56;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.language-button:hover {
+  background: #328C56;
+  color: white;
+}
+
+.language-button:active {
+  transform: scale(0.98);
 }
 
 /* Contact Button Styling */
@@ -140,6 +185,16 @@
   transform: scale(0.97);
 }
 
+.nav-links a:focus-visible,
+.hamburger-menu:focus-visible,
+.nav-links button:focus-visible,
+.modal-close:focus-visible,
+.whatsapp-button:focus-visible,
+.email-button:focus-visible {
+  outline: 3px solid #1f2937;
+  outline-offset: 3px;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   .hamburger-menu {
@@ -186,6 +241,11 @@
     margin: 0 auto;
     display: block;
     text-align: center;
+  }
+
+  .nav-links ul li .language-button {
+    width: 80%;
+    margin: 0 auto;
   }
 
   .contact-button .label {
