@@ -1,555 +1,863 @@
-import React, { useEffect, useRef, useState } from 'react';
-import logo from '/New_logoV2.png';
-import financeImage from '/Finance_Desk.jpg';
-import taxImage from '/taxtable.jpg';
-import taxesImage from '/taxes.jpg';
-import moneyImage from '/Money.jpg';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
-import Employee1 from '/Sandra.jpeg';
-import Employee2 from '/CoOwner.jpeg';
 
-function App() {
-  // State variables
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [language, setLanguage] = useState('es');
-  const closeButtonRef = useRef(null);
+// ------- STRINGS (bilingual) -------
+const COPY = {
+  es: {
+    nav: ["Inicio", "Nosotros", "Servicios", "Contacto"],
+    cta: "Contáctanos",
+    badge: "EST. 2004 · MIAMI, FL",
+    heroKicker: "Contabilidad & Impuestos",
+    heroTitle: ["Los números", "cuentan", "su historia."],
+    heroSub:
+      "C&G Enterprise Solution LLC prepara sus declaraciones individuales y de empresa con más de dos décadas de experiencia contable — atención personalizada, confiable, precisa.",
+    heroCta1: "Agendar consulta",
+    heroCta2: "Ver servicios",
+    metric1: "Años de experiencia",
+    metric2: "Declaraciones al año",
+    metric3: "Idiomas de trabajo",
+    metric3v: "ES / EN",
+    aboutKicker: "Nosotros",
+    aboutTitle: "Un equipo que trata cada libro como propio.",
+    aboutBody:
+      "Asociarse con C&G Enterprise Solution significa que su negocio está en las mejores manos. Con más de 20 años de experiencia en contabilidad y finanzas, ofrecemos atención personalizada, confiable y de calidad — desde la primera factura hasta la declaración final.",
+    values: [
+      ["01", "Personalizado", "Un contacto directo, sin pasar por un centro de llamadas."],
+      ["02", "Bilingüe", "Atención completa en español e inglés — sin traductores de por medio."],
+      ["03", "Preciso", "Software profesional y revisión humana en cada declaración."],
+      ["04", "Puntual", "Fechas límite respetadas. Sin sorpresas en abril."],
+    ],
+    servicesKicker: "Servicios",
+    servicesTitle: "Todo lo que su libro mayor necesita.",
+    services: [
+      {
+        code: "01",
+        title: "Declaraciones Individuales",
+        en: "Individual tax returns",
+        desc: "Form 1040 y anexos. Deducciones optimizadas para empleados, autónomos y familias.",
+        price: "Desde $150",
+        tags: ["1040", "Schedule A", "W-2", "1099"],
+      },
+      {
+        code: "02",
+        title: "Declaraciones de Empresa",
+        en: "Corporate tax returns",
+        desc: "LLC, S-Corp, C-Corp y Partnerships. Presentación estatal y federal.",
+        price: "Desde $450",
+        tags: ["1120", "1120-S", "1065", "Schedule K-1"],
+      },
+      {
+        code: "03",
+        title: "Contabilidad General",
+        en: "Bookkeeping",
+        desc: "Libros mensuales, conciliación bancaria, estados financieros listos para su banco.",
+        price: "Desde $200/mes",
+        tags: ["QuickBooks", "Xero", "Conciliación"],
+      },
+      {
+        code: "04",
+        title: "Nómina",
+        en: "Payroll",
+        desc: "Procesamiento quincenal, retenciones, W-2 y 1099 al cierre de año.",
+        price: "Desde $75/mes",
+        tags: ["W-2", "1099-NEC", "941", "940"],
+      },
+      {
+        code: "05",
+        title: "Consultoría Fiscal",
+        en: "Tax planning",
+        desc: "Planificación anticipada. Estructuras, retiros y deducciones legítimas antes del cierre.",
+        price: "Por proyecto",
+        tags: ["Estrategia", "Auditoría", "IRS"],
+      },
+      {
+        code: "06",
+        title: "Elaboración de Formularios",
+        en: "Form preparation",
+        desc: "Elaboración de facturas, formas 1099-MISC y 1099-NEC para sus clientes.",
+        price: "Cotización",
+        tags: ["1099-MISC", "1099-NEC", "Facturas"],
+      },
+    ],
+    whyKicker: "¿Por qué C&G?",
+    whyTitle: "Preciso · Puntual · Asequible",
+    whyBody:
+      "Software avanzado. Revisión humana. Garantía de satisfacción. Y un teléfono que alguien de verdad contesta.",
+    whyCta: "Hablar con un contador",
+    ticker: ["PRECISO", "PUNTUAL", "BILINGÜE", "20+ AÑOS", "GARANTIZADO", "PERSONALIZADO"],
+    contactKicker: "Contacto",
+    contactTitle: "Empiece por una conversación.",
+    contactBody:
+      "La primera consulta es sin costo. Cuéntenos de su situación y le responderemos en menos de 24 horas hábiles.",
+    formLabels: {
+      name: "Nombre completo",
+      email: "Correo electrónico",
+      phone: "Teléfono",
+      service: "Servicio de interés",
+      message: "Cuéntenos brevemente",
+      submit: "Enviar mensaje",
+      sending: "Enviando…",
+      sent: "¡Recibido! Le responderemos pronto.",
+    },
+    footNav: ["Inicio", "Nosotros", "Servicios", "Contacto"],
+    rights: "Todos los derechos reservados.",
+  },
+  en: {
+    nav: ["Home", "About", "Services", "Contact"],
+    cta: "Contact us",
+    badge: "EST. 2004 · MIAMI, FL",
+    heroKicker: "Accounting & Tax",
+    heroTitle: ["The numbers", "tell", "your story."],
+    heroSub:
+      "C&G Enterprise Solution LLC prepares individual and business tax returns with two decades of accounting experience — personalized, reliable, precise.",
+    heroCta1: "Book a consultation",
+    heroCta2: "See services",
+    metric1: "Years of experience",
+    metric2: "Returns filed yearly",
+    metric3: "Languages served",
+    metric3v: "ES / EN",
+    aboutKicker: "About",
+    aboutTitle: "A team that treats every book like its own.",
+    aboutBody:
+      "Partnering with C&G Enterprise Solution means your business is in the best hands. With over 20 years of experience in accounting and finance, we offer personalized, reliable, quality service — from the first invoice to the final return.",
+    values: [
+      ["01", "Personal", "A direct contact. No call-center queue."],
+      ["02", "Bilingual", "Full service in Spanish and English — no translators in between."],
+      ["03", "Precise", "Professional software and human review on every return."],
+      ["04", "On-time", "Deadlines honored. No April surprises."],
+    ],
+    servicesKicker: "Services",
+    servicesTitle: "Everything your ledger needs.",
+    services: [
+      {
+        code: "01",
+        title: "Individual Returns",
+        en: "Form 1040 & schedules",
+        desc: "Deductions optimized for employees, self-employed, and families.",
+        price: "From $150",
+        tags: ["1040", "Schedule A", "W-2", "1099"],
+      },
+      {
+        code: "02",
+        title: "Business Returns",
+        en: "LLC · S-Corp · C-Corp · Partnership",
+        desc: "Federal and state filings for every entity structure.",
+        price: "From $450",
+        tags: ["1120", "1120-S", "1065", "Schedule K-1"],
+      },
+      {
+        code: "03",
+        title: "Bookkeeping",
+        en: "Monthly close",
+        desc: "Monthly books, bank reconciliation, statements ready for your banker.",
+        price: "From $200/mo",
+        tags: ["QuickBooks", "Xero", "Reconciliation"],
+      },
+      {
+        code: "04",
+        title: "Payroll",
+        en: "Biweekly processing",
+        desc: "Processing, withholdings, year-end W-2 and 1099 filings.",
+        price: "From $75/mo",
+        tags: ["W-2", "1099-NEC", "941", "940"],
+      },
+      {
+        code: "05",
+        title: "Tax Planning",
+        en: "Year-round strategy",
+        desc: "Planning ahead. Structures, distributions and legitimate deductions before close.",
+        price: "Per project",
+        tags: ["Strategy", "Audit", "IRS"],
+      },
+      {
+        code: "06",
+        title: "Form Preparation",
+        en: "1099-MISC · 1099-NEC",
+        desc: "Invoice preparation and 1099-MISC and 1099-NEC form preparation for your clients.",
+        price: "Quote",
+        tags: ["1099-MISC", "1099-NEC", "Invoices"],
+      },
+    ],
+    whyKicker: "Why C&G?",
+    whyTitle: "Precise · On-time · Affordable",
+    whyBody:
+      "Advanced software. Human review. Satisfaction guarantee. And a phone that a real person answers.",
+    whyCta: "Talk to an accountant",
+    ticker: ["PRECISE", "ON-TIME", "BILINGUAL", "20+ YEARS", "GUARANTEED", "PERSONAL"],
+    contactKicker: "Contact",
+    contactTitle: "Start with a conversation.",
+    contactBody:
+      "First consultation is on us. Tell us about your situation and we'll reply within one business day.",
+    formLabels: {
+      name: "Full name",
+      email: "Email",
+      phone: "Phone",
+      service: "Service of interest",
+      message: "Tell us briefly",
+      submit: "Send message",
+      sending: "Sending…",
+      sent: "Received! We'll get back to you soon.",
+    },
+    footNav: ["Home", "About", "Services", "Contact"],
+    rights: "All rights reserved.",
+  },
+};
 
-  const translations = {
-    es: {
-      nav: {
-        about: 'Sobre Nosotros',
-        values: 'Valores',
-        employees: 'Empleados',
-        services: 'Servicios',
-        contact: 'Contactanos',
-        switchTo: 'English',
-        switchAria: 'Cambiar idioma a inglés',
-      },
-      modal: {
-        title: 'Contactanos',
-        description: 'Estamos aquí para ayudarle. Elija su método preferido para comunicarse con nosotros.',
-        whatsapp: 'Chatear en WhatsApp',
-        email: 'Enviar un Email',
-        close: 'Cerrar',
-      },
-      hero: {
-        title: 'C&G ENTERPRISE SOLUTION LLC',
-        body:
-          'C&G ENTERPRISE SOLUTION LLC es una empresa dedicada al servicio de contabilidad y preparación de declaraciones de impuestos individuales y de empresas. Asociarse con C&G ENTERPRISE SOLUTION LLC significa que su negocio está en las mejores manos porque contamos con un gran equipo de trabajo liderado por personas con una alta preparación académica con más de 20 años de experiencia en el área contable y financiera, adaptamos nuestros servicios a cada industria y a cada rubro de negocio, le ofrecemos atención personalizada, confiable y de calidad. Para C&G ENTERPRISE SOLUTION LLC usted no solo es un cliente más, es un asociado valioso por el que nos esmeramos en brindarle lo mejor para el buen funcionamiento de sus finanzas y de su compañía.',
-        missionTitle: 'Misión',
-        mission:
-          'Ofrecer a nuestros clientes a través de las mejores prácticas un servicio personalizado y oportuno colaborando con su crecimiento y el logro de sus objetivos.',
-        visionTitle: 'Visión',
-        vision:
-          'Ser líder en asesoría de negocios, brindar las mejores soluciones en el manejo de la contabilidad e impuestos colaborando con su crecimiento y el logro de sus objetivos.',
-      },
-      values: {
-        title: 'VALORES',
-        items: [
-          {
-            label: 'Responsabilidad',
-            text: 'Puntualidad en la presentación de información financiera y en el cumplimiento de obligaciones fiscales de nuestros clientes.',
-          },
-          {
-            label: 'Confidencialidad',
-            text: 'Ofrecemos máxima confidencialidad en el manejo de la información de nuestros clientes.',
-          },
-          {
-            label: 'Eficiencia',
-            text: 'Somos un equipo de profesionales cualificados para ofrecer servicios que generen un mayor valor a su empresa.',
-          },
-          {
-            label: 'Integridad',
-            text: 'Garantizamos la aplicación de las políticas contables y regulaciones fiscales en el manejo de sus operaciones.',
-          },
-          {
-            label: 'Honestidad',
-            text: 'Brindamos las mejores soluciones de negocio basados en un diálogo claro y honesto sobre los intereses de nuestros clientes.',
-          },
-        ],
-      },
-      team: {
-        title: 'Conoce A Nuestro Equipo De Trabajo',
-        employee1: {
-          name: 'Sandra Cruz Palma',
-          role1: 'Socia',
-          role2: 'Directora Ejecutiva',
-          alt: 'Sandra Cruz Palma, Socia y Directora Ejecutiva',
-          experience:
-            'Licenciada en gerencia de negocios, con más de 20 años de experiencia en las áreas administrativa, contable y financiera, con amplios conocimientos en el área de impuestos individuales y empresariales, lo que permite ofrecer soluciones integrales y estratégicas para la gestión financiera y fiscal de nuestros clientes.',
-        },
-        employee2: {
-          name: 'Adriana Gómez Zamora',
-          role1: 'Socia',
-          role2: 'Consultora Fiscal/ Financiera',
-          alt: 'Adriana Gómez Zamora, Socia y Consultora Fiscal/Financiera',
-          experience:
-            'Licenciada en Contaduría Pública y finanzas y Master en Administración de Empresas, con más de 20 años de experiencia en contabilidad, auditorías financieras, auditorías fiscales. Ha desempeñado roles como profesora universitaria, contadora general, contador independiente y auditora, con dominio de las normas IFRS, IAASB y herramientas contables como SAP y QuickBooks.',
-        },
-        experienceLabel: 'Experiencia',
-      },
-      services: {
-        title: 'NUESTROS SERVICIOS',
-        description:
-          'Nuestro objetivo principal es brindarles a nuestros clientes un apoyo que abarque todas las áreas en el proceso de la contabilidad, ofreciendo los siguientes servicios:',
-        listA: [
-          'Conciliaciones Bancarias',
-          'Contabilidad y teneduría de libros',
-          'Presentación de informes financieros periódicos (Anuales, trimestrales y mensuales).',
-          'Análisis e interpretación de los estados Financieros.',
-        ],
-        listB: [
-          'Presupuestos periódicos (Anuales, trimestrales y mensuales).',
-          'Declaraciones de Taxes individuales y de empresas.',
-          'Elaboración de facturas a sus clientes.',
-          'Elaboración de formas 1099-MISC y 1099-NEC',
-        ],
-      },
-      footer: {
-        socials: 'Sociales',
-        options: 'Opciones',
-        about: 'Sobre Nosotros',
-        employees: 'Empleados',
-        values: 'Valores',
-        services: 'Servicios',
-      },
-      images: {
-        finance: 'Escritorio financiero que muestra servicios de contabilidad',
-        money: 'Representación visual de los valores de la empresa y crecimiento financiero',
-        values: 'Ilustración que representa los valores de la empresa',
-        taxes: 'Ilustración de servicios financieros que enfatiza impuestos',
-      },
-      accessibility: {
-        skip: 'Saltar al contenido principal',
-      },
-    },
-    en: {
-      nav: {
-        about: 'About Us',
-        values: 'Values',
-        employees: 'Team',
-        services: 'Services',
-        contact: 'Contact Us',
-        switchTo: 'Español',
-        switchAria: 'Switch language to Spanish',
-      },
-      modal: {
-        title: 'Contact Us',
-        description: 'We are here to assist you. Choose your preferred method below to get in touch with us.',
-        whatsapp: 'Chat on WhatsApp',
-        email: 'Send an Email',
-        close: 'Close',
-      },
-      hero: {
-        title: 'C&G ENTERPRISE SOLUTION LLC',
-        body:
-          'C&G ENTERPRISE SOLUTION LLC is a company dedicated to accounting services and preparation of individual and business tax returns. Partnering with C&G ENTERPRISE SOLUTION LLC means your business is in the best hands because we have a strong team led by highly trained professionals with more than 20 years of experience in accounting and finance. We tailor our services to each industry and business category, and provide personalized, reliable, high-quality attention. For C&G ENTERPRISE SOLUTION LLC, you are not just another client; you are a valued partner and we strive to deliver the best for the proper functioning of your finances and your company.',
-        missionTitle: 'Mission',
-        mission:
-          'Offer our clients personalized and timely service through best practices, supporting their growth and the achievement of their goals.',
-        visionTitle: 'Vision',
-        vision:
-          'Be a leader in business advisory, providing the best solutions in accounting and tax management while supporting our clients\' growth and goals.',
-      },
-      values: {
-        title: 'VALUES',
-        items: [
-          {
-            label: 'Responsibility',
-            text: 'Timely presentation of financial information and compliance with our clients tax obligations.',
-          },
-          {
-            label: 'Confidentiality',
-            text: 'We provide maximum confidentiality in handling our clients information.',
-          },
-          {
-            label: 'Efficiency',
-            text: 'We are a qualified team of professionals offering services that generate greater value for your business.',
-          },
-          {
-            label: 'Integrity',
-            text: 'We ensure the application of accounting policies and tax regulations in the management of your operations.',
-          },
-          {
-            label: 'Honesty',
-            text: 'We provide the best business solutions based on clear and honest dialogue about our clients interests.',
-          },
-        ],
-      },
-      team: {
-        title: 'Meet Our Team',
-        employee1: {
-          name: 'Sandra Cruz Palma',
-          role1: 'Partner',
-          role2: 'Chief Executive Officer',
-          alt: 'Sandra Cruz Palma, Partner and Chief Executive Officer',
-          experience:
-            'Bachelor in business management with more than 20 years of experience in administrative, accounting, and financial areas, with extensive knowledge in individual and business taxes, enabling comprehensive and strategic solutions for our clients financial and tax management.',
-        },
-        employee2: {
-          name: 'Adriana Gómez Zamora',
-          role1: 'Partner',
-          role2: 'Tax/Financial Consultant',
-          alt: 'Adriana Gómez Zamora, Partner and Tax/Financial Consultant',
-          experience:
-            'Bachelor in Public Accounting and Finance and MBA, with more than 20 years of experience in accounting, financial audits, and tax audits. She has served as a university professor, general accountant, independent accountant, and auditor, with knowledge of IFRS, IAASB, and accounting tools such as SAP and QuickBooks.',
-        },
-        experienceLabel: 'Experience',
-      },
-      services: {
-        title: 'OUR SERVICES',
-        description:
-          'Our main goal is to provide support across all areas of the accounting process, offering the following services:',
-        listA: [
-          'Bank Reconciliations',
-          'Accounting and bookkeeping',
-          'Periodic financial reports (annual, quarterly, and monthly).',
-          'Analysis and interpretation of financial statements.',
-        ],
-        listB: [
-          'Periodic budgets (annual, quarterly, and monthly).',
-          'Individual and business tax returns.',
-          'Invoice preparation for clients.',
-          'Preparation of 1099-MISC and 1099-NEC forms',
-        ],
-      },
-      footer: {
-        socials: 'Socials',
-        options: 'Options',
-        about: 'About Us',
-        employees: 'Team',
-        values: 'Values',
-        services: 'Services',
-      },
-      images: {
-        finance: 'Finance desk showcasing accounting services',
-        money: 'Visual representation of company values and financial growth',
-        values: 'Illustration representing company values',
-        taxes: 'Financial services illustration emphasizing taxes',
-      },
-      accessibility: {
-        skip: 'Skip to main content',
-      },
-    },
+// ------- Hooks -------
+function useCountUp(target, trigger, duration = 1800) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!trigger) return;
+    let raf;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setVal(Math.round(target * eased));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, trigger, duration]);
+  return val;
+}
+
+function useInView(options = { threshold: 0.2 }) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) setInView(true);
+    }, options);
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, inView];
+}
+
+// ------- Logo mark -------
+function Logo() {
+  return (
+    <span className="logo">
+      <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+        <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M14.5 14.5a7 7 0 1 0 0 11" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M25.5 14.5a7 7 0 1 1 0 11 H22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <circle cx="20" cy="20" r="1.4" fill="currentColor" />
+      </svg>
+      <span className="logo__word">
+        <span className="logo__cg">C<i>&amp;</i>G</span>
+        <span className="logo__sub">Enterprise Solution</span>
+      </span>
+    </span>
+  );
+}
+
+// ------- Header -------
+function LangToggle({ lang, setLang }) {
+  return (
+    <div className="lang" role="tablist" aria-label="Language">
+      <button role="tab" aria-selected={lang === "es"} className={lang === "es" ? "lang__btn lang__btn--active" : "lang__btn"} onClick={() => setLang("es")}>ES</button>
+      <span className="lang__sep">/</span>
+      <button role="tab" aria-selected={lang === "en"} className={lang === "en" ? "lang__btn lang__btn--active" : "lang__btn"} onClick={() => setLang("en")}>EN</button>
+    </div>
+  );
+}
+
+function Header({ lang, setLang, t, onNav }) {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <header className={"hdr" + (scrolled ? " hdr--scrolled" : "")}>
+      <a href="#top" className="hdr__brand" onClick={(e) => { e.preventDefault(); onNav("top"); }}>
+        <Logo />
+      </a>
+      <nav className="hdr__nav" aria-label="Primary">
+        {t.nav.map((n, i) => {
+          const target = ["top", "about", "services", "contact"][i];
+          return (
+            <a key={n} href={"#" + target} onClick={(e) => { e.preventDefault(); onNav(target); }}>
+              <span className="hdr__num">0{i + 1}</span>
+              <span>{n}</span>
+            </a>
+          );
+        })}
+      </nav>
+      <div className="hdr__right">
+        <LangToggle lang={lang} setLang={setLang} />
+        <button className="btn btn--pill" onClick={() => onNav("contact")}>
+          <span className="btn__dot" />
+          {t.cta}
+        </button>
+        <button className="hdr__burger" aria-label="Menu" onClick={() => setOpen(!open)}>
+          <span /><span /><span />
+        </button>
+      </div>
+      {open && (
+        <div className="hdr__drawer" onClick={() => setOpen(false)}>
+          {t.nav.map((n, i) => {
+            const target = ["top", "about", "services", "contact"][i];
+            return (
+              <a key={n} href={"#" + target} onClick={(e) => { e.preventDefault(); onNav(target); setOpen(false); }}>
+                {n}
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </header>
+  );
+}
+
+// ------- Hero -------
+function LedgerCard({ years, returns }) {
+  const rows = [
+    { k: "Revenue · Ingresos", v: "$482,500.00", pos: true },
+    { k: "Deductions · Deducciones", v: "-$118,320.40", pos: false },
+    { k: "Taxable Income", v: "$364,179.60", pos: true },
+    { k: "Est. Tax · Imp.", v: "-$76,477.72", pos: false },
+    { k: "Refund · Reembolso", v: "$12,344.18", pos: true, bold: true },
+  ];
+  return (
+    <div className="ledger" aria-hidden="true">
+      <div className="ledger__tabs">
+        <span className="ledger__tab ledger__tab--active">Form 1040</span>
+        <span className="ledger__tab">Schedule C</span>
+        <span className="ledger__tab">1120-S</span>
+      </div>
+      <div className="ledger__head">
+        <div>
+          <div className="ledger__client mono">CLIENT · 00241</div>
+          <div className="ledger__name">Morales Consulting LLC</div>
+        </div>
+        <div className="ledger__stamp">
+          <span>FILED</span>
+          <span className="mono">FY · {new Date().getFullYear() - 1}</span>
+        </div>
+      </div>
+      <div className="ledger__rows">
+        {rows.map((r, i) => (
+          <div key={r.k} className={"ledger__row" + (r.bold ? " ledger__row--bold" : "")} style={{ animationDelay: i * 120 + "ms" }}>
+            <span>{r.k}</span>
+            <span className={"mono " + (r.pos ? "pos" : "neg")}>{r.v}</span>
+          </div>
+        ))}
+      </div>
+      <div className="ledger__foot">
+        <div>
+          <div className="ledger__k mono">PREPARED BY</div>
+          <div className="ledger__v">C&amp;G Enterprise Solution</div>
+        </div>
+        <svg viewBox="0 0 80 80" width="52" height="52" className="ledger__seal" aria-hidden="true">
+          <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" strokeWidth="1" />
+          <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" strokeWidth="0.6" strokeDasharray="2 3" />
+          <text x="40" y="44" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="11" fill="currentColor">C&amp;G</text>
+        </svg>
+      </div>
+      <div className="ledger__pill ledger__pill--1">
+        <span className="mono">{years}+ yrs</span>
+      </div>
+      <div className="ledger__pill ledger__pill--2">
+        <span className="mono">{returns}+ filed</span>
+      </div>
+    </div>
+  );
+}
+
+function Metric({ n, suffix, text, label }) {
+  return (
+    <div className="metric">
+      <div className="metric__n">
+        {text ?? (<>{n}<span className="metric__suf">{suffix}</span></>)}
+      </div>
+      <div className="metric__l">{label}</div>
+    </div>
+  );
+}
+
+function Hero({ t }) {
+  const [ref, inView] = useInView();
+  const years = useCountUp(22, inView);
+  const returns = useCountUp(1240, inView);
+  const [time, setTime] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const hhmm = time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
+
+  return (
+    <section className="hero" id="top" ref={ref}>
+      <div className="hero__rules" aria-hidden="true">
+        {Array.from({ length: 14 }).map((_, i) => (<span key={i} />))}
+      </div>
+      <div className="hero__meta">
+        <div className="hero__tag">
+          <span className="dot" /> {t.badge}
+        </div>
+        <div className="hero__clock">
+          <span className="mono">EST · MIA</span>
+          <span className="mono hero__time">{hhmm}</span>
+        </div>
+      </div>
+      <h1 className="hero__h1">
+        <span className="hero__kicker">— {t.heroKicker}</span>
+        <span className="hero__line">{t.heroTitle[0]}</span>
+        <span className="hero__line hero__line--italic">{t.heroTitle[1]}</span>
+        <span className="hero__line">{t.heroTitle[2]}</span>
+      </h1>
+      <div className="hero__sub">
+        <p>{t.heroSub}</p>
+        <div className="hero__ctas">
+          <a className="btn btn--solid" href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>
+            {t.heroCta1} <span className="btn__arrow">→</span>
+          </a>
+          <a className="btn btn--ghost" href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }}>
+            {t.heroCta2}
+          </a>
+        </div>
+      </div>
+      <LedgerCard years={years} returns={returns} />
+      <div className="hero__metrics">
+        <Metric n={years} suffix="+" label={t.metric1} />
+        <Metric n={returns} suffix="+" label={t.metric2} />
+        <Metric text={t.metric3v} label={t.metric3} />
+      </div>
+    </section>
+  );
+}
+
+// ------- Ticker -------
+function Ticker({ t }) {
+  const items = [...t.ticker, ...t.ticker];
+  return (
+    <section className="ticker" aria-hidden="true">
+      <div className="ticker__track">
+        {items.map((w, i) => (
+          <span key={i} className="ticker__item">
+            {w}
+            <svg viewBox="0 0 24 24" width="18" height="18" className="ticker__dot">
+              <circle cx="12" cy="12" r="4" fill="currentColor" />
+            </svg>
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ------- About -------
+function DeadlineCalendar() {
+  const months = ["JAN", "FEB", "MAR", "APR"];
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIdx((i) => (i + 1) % 8), 1400);
+    return () => clearInterval(id);
+  }, []);
+  const m = months[Math.min(idx, 3)];
+  const isApril = idx >= 3;
+  return (
+    <div className="cal" aria-hidden="true">
+      <div className="cal__card">
+        <div className="cal__bind"><span /><span /><span /><span /><span /></div>
+        <div className={"cal__page " + (isApril ? "cal__page--april" : "")} key={m}>
+          <div className="cal__m mono">{m} · {new Date().getFullYear()}</div>
+          <div className="cal__big">{isApril ? "15" : (idx * 7 + 3)}</div>
+          <div className="cal__lbl">{isApril ? "TAX DAY" : "Day"}</div>
+          {isApril && <div className="cal__stamp">FILED ✓</div>}
+        </div>
+      </div>
+      <div className="cal__caption mono">Deadlines honored · Fechas respetadas</div>
+    </div>
+  );
+}
+
+function About({ t }) {
+  return (
+    <section className="about" id="about">
+      <div className="section__head">
+        <div className="section__kicker">— {t.aboutKicker}</div>
+        <h2 className="section__title">{t.aboutTitle}</h2>
+      </div>
+      <div className="about__grid">
+        <div>
+          <p className="about__body">{t.aboutBody}</p>
+          <DeadlineCalendar />
+        </div>
+        <div className="about__values">
+          {t.values.map(([n, title, body]) => (
+            <div className="value" key={n}>
+              <div className="value__n mono">{n}</div>
+              <div className="value__title">{title}</div>
+              <div className="value__body">{body}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------- Services -------
+function FormStack() {
+  const folders = [
+    { code: "Accrual", label: "Revenue recognition" },
+    { code: "GAAP", label: "Generally Accepted" },
+    { code: "FIFO", label: "First-In, First-Out" },
+    { code: "Depreciation", label: "MACRS · Useful life" },
+    { code: "Double-Entry", label: "Debit · Credit" },
+    { code: "Materiality", label: "Relevance principle" },
+  ];
+  const [hover, setHover] = useState(false);
+  return (
+    <div
+      className={"fstack" + (hover ? " fstack--hover" : "")}
+      aria-hidden="true"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      {folders.map((f, i) => {
+        const mid = (folders.length - 1) / 2;
+        const delta = i - mid;
+        const restTx = delta * 8;
+        const restTy = Math.abs(delta) * 2;
+        const restRot = delta * 1.4;
+        const hovTx = delta * 74;
+        const hovTy = Math.abs(delta) * 8;
+        const hovRot = delta * 7;
+        return (
+          <div
+            key={f.code}
+            className="folder"
+            style={{
+              transform: hover
+                ? `translate(${hovTx}px, ${hovTy}px) rotate(${hovRot}deg)`
+                : `translate(${restTx}px, ${restTy}px) rotate(${restRot}deg)`,
+              zIndex: i + 1,
+            }}
+          >
+            <img src="/folder-icon.svg" alt="" className="folder__img" />
+            <div className="folder__sticker">
+              <div className="folder__title">{f.code}</div>
+              <div className="folder__lbl mono">{f.label}</div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function Services({ t }) {
+  const [active, setActive] = useState(0);
+  return (
+    <section className="svc" id="services">
+      <div className="section__head">
+        <div className="section__kicker">— {t.servicesKicker}</div>
+        <h2 className="section__title">{t.servicesTitle}</h2>
+        <FormStack />
+      </div>
+      <div className="svc__list">
+        {t.services.map((s, i) => (
+          <div
+            key={s.code}
+            className={"svc__row" + (active === i ? " svc__row--active" : "")}
+            onMouseEnter={() => setActive(i)}
+            onFocus={() => setActive(i)}
+            tabIndex={0}
+          >
+            <div className="svc__row-main">
+              <div className="svc__code mono">{s.code}</div>
+              <div className="svc__title">{s.title}</div>
+              <div className="svc__en">{s.en}</div>
+              <div className="svc__price mono">{s.price}</div>
+              <div className="svc__arrow" aria-hidden="true">→</div>
+            </div>
+            <div className="svc__row-open">
+              <div className="svc__row-open-inner">
+                <p className="svc__desc">{s.desc}</p>
+                <div className="svc__tags">
+                  {s.tags.map((tag) => (
+                    <span key={tag} className="svc__tag mono">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ------- Why us -------
+function CoinStack() {
+  const [n, setN] = useState(1);
+  useEffect(() => {
+    const id = setInterval(() => setN((v) => (v >= 8 ? 1 : v + 1)), 420);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <div className="coins" aria-hidden="true">
+      <div className="coins__scene">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div
+            key={i}
+            className={"coin " + (i < n ? "coin--on" : "")}
+            style={{ transform: `translate(-50%, ${-i * 12}px) rotateX(62deg)`, transitionDelay: i * 30 + "ms" }}
+          >
+            <span className="coin__face mono">$</span>
+          </div>
+        ))}
+        <div className="coins__shadow" />
+      </div>
+      <div className="coins__caption mono">Refunds · Savings · Every quarter</div>
+    </div>
+  );
+}
+
+function ProcessStrip() {
+  const steps = [
+    ["01", "Intake", "15-min call"],
+    ["02", "Review", "Docs & prior year"],
+    ["03", "Prepare", "Draft + review"],
+    ["04", "File", "E-file & confirm"],
+  ];
+  return (
+    <div className="proc">
+      {steps.map(([n, title, sub], i) => (
+        <div className="proc__step" key={n}>
+          <div className="proc__n mono">{n}</div>
+          <div className="proc__t">{title}</div>
+          <div className="proc__s mono">{sub}</div>
+          {i < steps.length - 1 && <div className="proc__line" aria-hidden="true" />}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Why({ t, onNav }) {
+  return (
+    <section className="why">
+      <div className="why__inner">
+        <div className="section__kicker section__kicker--light">— {t.whyKicker}</div>
+        <h2 className="why__title">{t.whyTitle}</h2>
+        <p className="why__body">{t.whyBody}</p>
+        <button className="btn btn--cream" onClick={() => onNav("contact")}>
+          {t.whyCta} <span className="btn__arrow">→</span>
+        </button>
+        <CoinStack />
+        <ProcessStrip />
+      </div>
+    </section>
+  );
+}
+
+// ------- Contact -------
+function Field({ label, v, on, type = "text", as = "input" }) {
+  return (
+    <div className="form__field">
+      <label className="form__label mono">{label}</label>
+      {as === "textarea" ? (
+        <textarea className="form__input" rows="4" value={v} onChange={(e) => on(e.target.value)} />
+      ) : (
+        <input className="form__input" type={type} value={v} onChange={(e) => on(e.target.value)} />
+      )}
+    </div>
+  );
+}
+
+function RRow({ k, v }) {
+  return (
+    <div className="rrow">
+      <span className="mono rrow__k">{k}</span>
+      <span className="rrow__dots" aria-hidden="true" />
+      <span className="rrow__v">{v}</span>
+    </div>
+  );
+}
+
+function Contact({ t }) {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+  const [state, setState] = useState("idle");
+  const submit = (e) => {
+    e.preventDefault();
+    setState("sending");
+    setTimeout(() => setState("sent"), 900);
   };
+  const services = t.services.map((s) => s.title);
 
-  const t = translations[language];
+  return (
+    <section className="contact" id="contact">
+      <div className="section__head">
+        <div className="section__kicker">— {t.contactKicker}</div>
+        <h2 className="section__title">{t.contactTitle}</h2>
+        <p className="contact__intro">{t.contactBody}</p>
+      </div>
+      <div className="contact__grid">
+        <form className="form" onSubmit={submit}>
+          <Field label={t.formLabels.name} v={form.name} on={(v) => setForm({ ...form, name: v })} />
+          <div className="form__row2">
+            <Field label={t.formLabels.email} type="email" v={form.email} on={(v) => setForm({ ...form, email: v })} />
+            <Field label={t.formLabels.phone} type="tel" v={form.phone} on={(v) => setForm({ ...form, phone: v })} />
+          </div>
+          <div className="form__field">
+            <label className="form__label mono">{t.formLabels.service}</label>
+            <div className="form__chips">
+              {services.map((s) => (
+                <button key={s} type="button" className={"chip" + (form.service === s ? " chip--active" : "")} onClick={() => setForm({ ...form, service: s })}>
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+          <Field label={t.formLabels.message} as="textarea" v={form.message} on={(v) => setForm({ ...form, message: v })} />
+          <button className="btn btn--solid btn--block" type="submit" disabled={state !== "idle"}>
+            {state === "idle" && <>{t.formLabels.submit} <span className="btn__arrow">→</span></>}
+            {state === "sending" && t.formLabels.sending}
+            {state === "sent" && <>✓ {t.formLabels.sent}</>}
+          </button>
+        </form>
 
-  useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
+        <aside className="receipt">
+          <div className="receipt__head">
+            <div className="mono">C&amp;G · CONSULT INTAKE</div>
+            <div className="mono receipt__no">NO. {String(Math.floor(Math.random() * 9000) + 1000)}</div>
+          </div>
+          <div className="receipt__rows">
+            <RRow k={t.formLabels.name} v={form.name || "—"} />
+            <RRow k={t.formLabels.email} v={form.email || "—"} />
+            <RRow k={t.formLabels.phone} v={form.phone || "—"} />
+            <RRow k={t.formLabels.service} v={form.service || "—"} />
+          </div>
+          <div className="receipt__msg">
+            <div className="mono receipt__k">{t.formLabels.message}</div>
+            <div className="receipt__v">{form.message || "—"}</div>
+          </div>
+          <div className="receipt__bar" aria-hidden="true">
+            {Array.from({ length: 40 }).map((_, i) => (
+              <span key={i} style={{ width: (1 + Math.random() * 3) + "px" }} />
+            ))}
+          </div>
+          <div className="receipt__foot mono">
+            <span>THANK YOU · GRACIAS</span>
+            <span>RETAIN FOR RECORDS</span>
+          </div>
+        </aside>
+      </div>
 
-  useEffect(() => {
-    if (isModalOpen) {
-      closeButtonRef.current?.focus();
+      <div className="contact__cards">
+        <div className="ccard">
+          <div className="ccard__k mono">EMAIL</div>
+          <div className="ccard__v">
+            <a href="mailto:ventas@cygsolution.com">ventas@cygsolution.com</a>
+          </div>
+        </div>
+        <div className="ccard">
+          <div className="ccard__k mono">WHATSAPP</div>
+          <div className="ccard__v">
+            <a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer">+1 (813) 476-0188</a>
+          </div>
+        </div>
+        <div className="ccard">
+          <div className="ccard__k mono">FACEBOOK</div>
+          <div className="ccard__v">
+            <a href="https://www.facebook.com/share/HcJLSEEMffhgtDVW/" target="_blank" rel="noopener noreferrer">CYG Enterprise Solution ↗</a>
+          </div>
+        </div>
+        <div className="ccard">
+          <div className="ccard__k mono">INSTAGRAM</div>
+          <div className="ccard__v">
+            <a href="https://www.instagram.com/cygenterprisesolution" target="_blank" rel="noopener noreferrer">@cygenterprisesolution ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ------- Footer -------
+function Footer({ t, onNav }) {
+  return (
+    <footer className="ftr" id="footer">
+      <div className="ftr__top">
+        <div className="ftr__big">
+          <span>C</span>
+          <span className="ftr__amp">&amp;</span>
+          <span>G</span>
+        </div>
+        <div className="ftr__cols">
+          <div>
+            <div className="ftr__k mono">NAVIGATION</div>
+            <ul>
+              {t.footNav.map((n, i) => {
+                const target = ["top", "about", "services", "contact"][i];
+                return (
+                  <li key={n}>
+                    <a href={"#" + target} onClick={(e) => { e.preventDefault(); onNav(target); }}>{n}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div>
+            <div className="ftr__k mono">CONTACT</div>
+            <ul>
+              <li><a href="mailto:ventas@cygsolution.com">ventas@cygsolution.com</a></li>
+              <li><a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer">+1 (813) 476-0188</a></li>
+              <li>Miami, FL</li>
+            </ul>
+          </div>
+          <div>
+            <div className="ftr__k mono">SOCIAL</div>
+            <ul>
+              <li><a href="https://www.facebook.com/share/HcJLSEEMffhgtDVW/" target="_blank" rel="noopener noreferrer">Facebook ↗</a></li>
+              <li><a href="https://www.instagram.com/cygenterprisesolution" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+              <li><a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="ftr__bot">
+        <span className="mono">© {new Date().getFullYear()} C&amp;G Enterprise Solution LLC · {t.rights}</span>
+        <span className="mono">IRS AFSP · 20+ Years</span>
+      </div>
+    </footer>
+  );
+}
+
+// ------- App -------
+function App() {
+  const [lang, setLang] = useState("es");
+  const t = COPY[lang];
+
+  const onNav = (id) => {
+    if (id === "top") window.scrollTo({ top: 0, behavior: "smooth" });
+    else {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: "smooth" });
     }
-  }, [isModalOpen]);
-
-  useEffect(() => {
-    document.body.style.overflow = isModalOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isModalOpen]);
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape' && isModalOpen) {
-        setIsModalOpen(false);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen]);
+  };
 
   return (
     <>
-      <a className="skip-link" href="#main-content">
-        {t.accessibility.skip}
-      </a>
-      {/* Navigation Bar */}
-      <header className="nav" role="banner">
-        <div className="logo">
-          <img src={logo} alt="C&G Enterprise Solutions LLC Logo" />
-        </div>
-
-        {/* Hamburger Menu for Mobile */}
-        <button
-          className="hamburger-menu"
-          type="button"
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMenuOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <svg viewBox="0 0 32 32" className={`hamburger ${isMenuOpen ? 'open' : ''}`} aria-hidden="true">
-            <path className="line line-top-bottom" d="M4 8H28"></path>
-            <path className="line" d="M4 16H28"></path>
-            <path className="line line-top-bottom" d="M4 24H28"></path>
-          </svg>
-        </button>
-
-        {/* Navigation Links */}
-        <nav className={`nav-links ${isMenuOpen ? 'open' : ''}`} id="primary-navigation" aria-label="Primary">
-          <ul>
-            <li>
-              <a href="#About" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.about}
-              </a>
-            </li>
-            <li>
-              <a href="#Values" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.values}
-              </a>
-            </li>
-            <li>
-              <a href="#Employees" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.employees}
-              </a>
-            </li>
-            <li>
-              <a href="#Services" onClick={() => setIsMenuOpen(false)}>
-                {t.nav.services}
-              </a>
-            </li>
-            <li>
-              <button
-                className="language-button"
-                type="button"
-                aria-label={t.nav.switchAria}
-                onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-              >
-                {t.nav.switchTo}
-              </button>
-            </li>
-            {/* Contact Button */}
-            <li>
-              <button
-                className="contact-button"
-                type="button"
-                aria-label={t.nav.contact}
-                aria-haspopup="dialog"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setIsModalOpen(true); // Open the modal
-                }}
-              >
-                <span className="transition"></span>
-                <span className="gradient"></span>
-                <span className="label">{t.nav.contact}</span>
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      {/* Modal Component */}
-      {isModalOpen && (
-        <div className="modal-overlay" role="presentation" onClick={() => setIsModalOpen(false)}>
-          <div
-            className="modal-content"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="contact-title"
-            aria-describedby="contact-description"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              className="modal-close"
-              type="button"
-              aria-label={t.modal.close}
-              ref={closeButtonRef}
-              onClick={() => setIsModalOpen(false)}
-            >
-              &times;
-            </button>
-            <h2 id="contact-title">{t.modal.title}</h2>
-            <p id="contact-description">{t.modal.description}</p>
-            
-            {/* WhatsApp Contact Button */}
-            <a
-              href="https://wa.me/18134760188"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-button"
-              aria-label={t.modal.whatsapp}
-            >
-              <i className="fab fa-whatsapp" aria-hidden="true"></i> {t.modal.whatsapp}
-            </a>
-
-            {/* Email Contact Button */}
-            <a
-              href="mailto:ventas@cygsolution.com"
-              className="email-button"
-              aria-label={t.modal.email}
-            >
-              <i className="fas fa-envelope" aria-hidden="true"></i> {t.modal.email}
-            </a>
-          </div>
-        </div>
-      )}
-
-      <main id="main-content" key={language}>
-        {/* First Content Section */}
-        <section className="content" id="About" aria-labelledby="about-title">
-          <div className="image-content">
-            <img src={financeImage} alt={t.images.finance} />
-          </div>
-
-          <div className="text-content">
-            <h1 id="about-title">
-              {t.hero.title} <i className="fa-solid fa-coins" aria-hidden="true"></i>
-            </h1>
-            <p>{t.hero.body}</p>
-
-            <h2>
-              {t.hero.missionTitle} <i className="fa-solid fa-bars-progress" aria-hidden="true"></i>
-            </h2>
-            <p>{t.hero.mission}</p>
-
-            <h2>
-              {t.hero.visionTitle} <i className="fa-solid fa-glasses" aria-hidden="true"></i>
-            </h2>
-            <p>{t.hero.vision}</p>
-          </div>
-
-          <div className="image-content">
-            <img src={moneyImage} alt={t.images.money} />
-          </div>
-        </section>
-
-        {/* Valores Section */}
-        <section className="content values" id="Values" aria-labelledby="values-title">
-          <div className="image-content">
-            <img src={taxImage} alt={t.images.values} />
-          </div>
-
-          <div className="text-content values">
-            <h2 id="values-title">{t.values.title}</h2>
-            {t.values.items.map((item) => (
-              <p key={item.label}>
-                <strong>{item.label}:</strong> {item.text}
-              </p>
-            ))}
-          </div>
-
-          <div className="image-content">
-            <img src={taxesImage} alt={t.images.taxes} />
-          </div>
-        </section>
-
-        {/* Meet the Team Section */}
-        <section className="team-section" id="Employees" aria-labelledby="team-title">
-          <h2 id="team-title">{t.team.title}</h2>
-          <div className="team-members">
-            {/* Employee 1 */}
-            <div className="team-member">
-              <img src={Employee1} alt={t.team.employee1.alt} />
-              <h3>{t.team.employee1.name}</h3>
-              <h4>{t.team.employee1.role1}</h4>
-              <h4>{t.team.employee1.role2}</h4>
-              <p>
-                <strong>{t.team.experienceLabel}: </strong>{t.team.employee1.experience}
-
-              </p>
-              <a href="https://www.linkedin.com/in/sandra-cruz-palma-59a95924a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">
-                  LinkedIn <i className="fa-brands fa-linkedin" aria-hidden="true"></i>
-                </a>
-            </div>
-            {/* Employee 2 */}
-            <div className="team-member">
-              <img src={Employee2} alt={t.team.employee2.alt} />
-              <h3>{t.team.employee2.name}</h3>
-              <h4>{t.team.employee2.role1}</h4>
-              <h4>{t.team.employee2.role2}</h4>
-              <p>
-                <strong>{t.team.experienceLabel}: </strong>{t.team.employee2.experience}
-
-              </p>
-              <a href="https://www.linkedin.com/in/adriana-g%C3%B3mez-4a600640?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">
-                  LinkedIn <i className="fa-brands fa-linkedin" aria-hidden="true"></i>
-                </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Servicios Section */}
-        <section className="services-section" id="Services" aria-labelledby="services-title">
-        <div>
-          {/* Title */}
-          <h2 id="services-title">{t.services.title}</h2>
-
-          {/* Information Paragraph */}
-          <p className="services-description">
-            {t.services.description}
-          </p>
-        </div>
-
-        {/* Services List */}
-        <div className="services-container">
-          <div className="service-box">
-            <ul>
-              {t.services.listA.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="service-box">
-            <ul>
-              {t.services.listB.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        </section>
-
-      {/* Footer Section */}
-      <footer className='Footer' role="contentinfo">
-        <div className='left-side'>
-          <h4>{t.footer.socials}</h4>
-          <ul>
-            <li>
-              <a href="https://www.facebook.com/share/HcJLSEEMffhgtDVW/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer">
-                Facebook <i className="fa-brands fa-facebook" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/cygenterprisesolution?igsh=aWgwOHpwaTJsaDVr`" target="_blank" rel="noopener noreferrer">
-                Instagram <i className="fa-brands fa-square-instagram" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                LinkedIn <i className="fa-brands fa-linkedin" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://google.com" target="_blank" rel="noopener noreferrer">
-                Reviews <i className="fa-brands fa-google" aria-hidden="true"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className='img-footer'>
-          <img src={logo} alt="C&G Enterprise Solutions LLC Logo" />
-          <h3>C&G Enterprise Solution LLC&reg;</h3>
-        </div>
-
-        <div className='right-side'>
-          <h4>{t.footer.options}</h4>
-          <ul>
-            <li><a href='#About'>{t.footer.about}</a></li>
-            <li><a href='#Employees'>{t.footer.employees}</a></li>
-            <li><a href='#Values'>{t.footer.values}</a></li>
-            <li><a href='#Services'>{t.footer.services}</a></li>
-          </ul>
-        </div>
-      </footer>
+      <Header lang={lang} setLang={setLang} t={t} onNav={onNav} />
+      <main>
+        <Hero t={t} />
+        <Ticker t={t} />
+        <About t={t} />
+        <Services t={t} />
+        <Why t={t} onNav={onNav} />
+        <Contact t={t} />
       </main>
-
+      <Footer t={t} onNav={onNav} />
     </>
   );
 }
