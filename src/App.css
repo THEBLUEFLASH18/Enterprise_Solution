@@ -45,6 +45,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hdr--scrolled { border-bottom-color: var(--line); padding: 12px 40px; }
 .hdr__brand { justify-self: start; }
 .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+.logo img { display: block; width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+.ftr .logo img { width: 56px; height: 56px; }
+.ftr .logo { color: var(--bg); }
+.ftr .logo__sub { color: color-mix(in oklab, var(--bg) 60%, transparent); }
 .logo__word { display: flex; flex-direction: column; line-height: 1; }
 .logo__cg { font-family: "Instrument Serif", "Times New Roman", serif; font-size: 1.4rem; letter-spacing: -0.02em; }
 .logo__cg i { font-style: italic; color: var(--brand-green); padding: 0 1px; }
@@ -295,7 +299,7 @@ main { display: block; }
 
 /* ---------- Footer ---------- */
 .ftr { background: var(--ink); color: var(--bg); padding: 80px 40px 32px; }
-.ftr__top { display: grid; grid-template-columns: 1.2fr 2fr; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid color-mix(in oklab, var(--bg) 15%, transparent); }
+.ftr__top { display: grid; grid-template-columns: 1.2fr 2fr; gap: 48px; padding-bottom: 24px; align-items: start; }
 .ftr__big { font-family: "Instrument Serif", serif; font-size: clamp(5rem, 14vw, 14rem); line-height: 0.85; letter-spacing: -0.04em; display: flex; align-items: baseline; }
 .ftr__amp { color: var(--brand-green); font-style: italic; }
 .ftr__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; align-content: start; padding-top: 24px; }

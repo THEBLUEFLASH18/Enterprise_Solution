@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import logoImg from '/New_logoV2.png';
 import './App.css';
 
 // ------- STRINGS (bilingual) -------
@@ -6,7 +7,7 @@ const COPY = {
   es: {
     nav: ["Inicio", "Nosotros", "Servicios", "Contacto"],
     cta: "Contáctanos",
-    badge: "EST. 2004 · MIAMI, FL",
+    badge: "EST. 2024 · TAMPA, FL",
     heroKicker: "Contabilidad & Impuestos",
     heroTitle: ["Los números", "cuentan", "su historia."],
     heroSub:
@@ -105,7 +106,7 @@ const COPY = {
   en: {
     nav: ["Home", "About", "Services", "Contact"],
     cta: "Contact us",
-    badge: "EST. 2004 · MIAMI, FL",
+    badge: "EST. 2024 · TAMPA, FL",
     heroKicker: "Accounting & Tax",
     heroTitle: ["The numbers", "tell", "your story."],
     heroSub:
@@ -240,12 +241,7 @@ function useInView(options = { threshold: 0.2 }) {
 function Logo() {
   return (
     <span className="logo">
-      <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
-        <circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M14.5 14.5a7 7 0 1 0 0 11" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        <path d="M25.5 14.5a7 7 0 1 1 0 11 H22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        <circle cx="20" cy="20" r="1.4" fill="currentColor" />
-      </svg>
+      <img src={logoImg} alt="C&G Enterprise Solutions LLC Logo" width="34" height="34" />
       <span className="logo__word">
         <span className="logo__cg">C<i>&amp;</i>G</span>
         <span className="logo__sub">Enterprise Solution</span>
@@ -402,7 +398,7 @@ function Hero({ t }) {
           <span className="dot" /> {t.badge}
         </div>
         <div className="hero__clock">
-          <span className="mono">EST · MIA</span>
+          <span className="mono">EST · TAMPA</span>
           <span className="mono hero__time">{hhmm}</span>
         </div>
       </div>
@@ -687,10 +683,26 @@ function RRow({ k, v }) {
 function Contact({ t }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
   const [state, setState] = useState("idle");
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     setState("sending");
-    setTimeout(() => setState("sent"), 900);
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          "form-name": "contact",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+        }).toString(),
+      });
+      setState("sent");
+    } catch {
+      setState("idle");
+    }
   };
   const services = t.services.map((s) => s.title);
 
@@ -702,7 +714,8 @@ function Contact({ t }) {
         <p className="contact__intro">{t.contactBody}</p>
       </div>
       <div className="contact__grid">
-        <form className="form" onSubmit={submit}>
+        <form className="form" name="contact" data-netlify="true" onSubmit={submit}>
+          <input type="hidden" name="form-name" value="contact" />
           <Field label={t.formLabels.name} v={form.name} on={(v) => setForm({ ...form, name: v })} />
           <div className="form__row2">
             <Field label={t.formLabels.email} type="email" v={form.email} on={(v) => setForm({ ...form, email: v })} />
@@ -788,11 +801,7 @@ function Footer({ t, onNav }) {
   return (
     <footer className="ftr" id="footer">
       <div className="ftr__top">
-        <div className="ftr__big">
-          <span>C</span>
-          <span className="ftr__amp">&amp;</span>
-          <span>G</span>
-        </div>
+        <Logo />
         <div className="ftr__cols">
           <div>
             <div className="ftr__k mono">NAVIGATION</div>
