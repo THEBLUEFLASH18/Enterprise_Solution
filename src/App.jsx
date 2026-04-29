@@ -683,26 +683,18 @@ function RRow({ k, v }) {
 function Contact({ t }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
   const [state, setState] = useState("idle");
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    setState("sending");
-    try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          "form-name": "contact",
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          service: form.service,
-          message: form.message,
-        }).toString(),
-      });
-      setState("sent");
-    } catch {
-      setState("idle");
-    }
+    const subject = encodeURIComponent("Consulta desde el sitio web / Website Inquiry");
+    const body = encodeURIComponent(
+      `Nombre / Name: ${form.name}\n` +
+      `Correo / Email: ${form.email}\n` +
+      `Teléfono / Phone: ${form.phone}\n` +
+      `Servicio / Service: ${form.service}\n\n` +
+      `Mensaje / Message:\n${form.message}`
+    );
+    window.location.href = `mailto:ventas@cygsolution.com?subject=${subject}&body=${body}`;
+    setState("sent");
   };
   const services = t.services.map((s) => s.title);
 
@@ -714,8 +706,7 @@ function Contact({ t }) {
         <p className="contact__intro">{t.contactBody}</p>
       </div>
       <div className="contact__grid">
-        <form className="form" name="contact" data-netlify="true" onSubmit={submit}>
-          <input type="hidden" name="form-name" value="contact" />
+        <form className="form" onSubmit={submit}>
           <Field label={t.formLabels.name} v={form.name} on={(v) => setForm({ ...form, name: v })} />
           <div className="form__row2">
             <Field label={t.formLabels.email} type="email" v={form.email} on={(v) => setForm({ ...form, email: v })} />
