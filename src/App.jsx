@@ -25,7 +25,7 @@ const COPY = {
     values: [
       ["01", "Personalizado", "Un contacto directo, sin pasar por un centro de llamadas."],
       ["02", "Bilingüe", "Atención completa en español e inglés — sin traductores de por medio."],
-      ["03", "Preciso", "Software profesional y revisión humana en cada declaración."],
+      ["03", "Preciso", "Software profesional y revisión humana en cada declaración y en cada reporte financiero."],
       ["04", "Puntual", "Fechas límite respetadas. Sin sorpresas en abril."],
     ],
     servicesKicker: "Servicios",
@@ -51,9 +51,10 @@ const COPY = {
         code: "03",
         title: "Contabilidad General",
         en: "Bookkeeping",
-        desc: "Libros mensuales, conciliación bancaria, estados financieros listos para su banco.",
+        desc: "Libros mensuales, conciliación bancaria y estados financieros para tomar decisiones internas, control y planificación, medir el desempeño, cumplimiento fiscal, atraer inversiones de nuevos socios, gestiones con proveedores y clientes, y detectar problemas a tiempo.",
         price: "Desde $200/mes",
-        tags: ["QuickBooks", "Xero", "Conciliación"],
+        tags: ["QuickBooks", "Conciliación"],
+        note: "El precio varía según el número de transacciones, bancos y requerimientos del cliente.",
       },
       {
         code: "04",
@@ -68,8 +69,9 @@ const COPY = {
         title: "Consultoría Fiscal",
         en: "Tax planning",
         desc: "Planificación anticipada. Estructuras, retiros y deducciones legítimas antes del cierre.",
-        price: "Por proyecto",
-        tags: ["Estrategia", "Auditoría", "IRS"],
+        price: "Cotización",
+        tags: ["Estrategia", "IRS"],
+        note: "El precio se determina según el número de transacciones, bancos y requerimientos del cliente.",
       },
       {
         code: "06",
@@ -124,7 +126,7 @@ const COPY = {
     values: [
       ["01", "Personal", "A direct contact. No call-center queue."],
       ["02", "Bilingual", "Full service in Spanish and English — no translators in between."],
-      ["03", "Precise", "Professional software and human review on every return."],
+      ["03", "Precise", "Professional software and human review on every return and every financial report."],
       ["04", "On-time", "Deadlines honored. No April surprises."],
     ],
     servicesKicker: "Services",
@@ -150,9 +152,10 @@ const COPY = {
         code: "03",
         title: "Bookkeeping",
         en: "Monthly close",
-        desc: "Monthly books, bank reconciliation, statements ready for your banker.",
+        desc: "Monthly books, bank reconciliation, and financial statements for internal decisions, planning, performance tracking, tax compliance, attracting investors, managing vendors and clients, and catching problems early.",
         price: "From $200/mo",
-        tags: ["QuickBooks", "Xero", "Reconciliation"],
+        tags: ["QuickBooks", "Reconciliation"],
+        note: "Pricing varies based on number of transactions, banks, and client requirements.",
       },
       {
         code: "04",
@@ -167,8 +170,9 @@ const COPY = {
         title: "Tax Planning",
         en: "Year-round strategy",
         desc: "Planning ahead. Structures, distributions and legitimate deductions before close.",
-        price: "Per project",
-        tags: ["Strategy", "Audit", "IRS"],
+        price: "Quote",
+        tags: ["Strategy", "IRS"],
+        note: "Pricing is determined based on number of transactions, banks, and client requirements.",
       },
       {
         code: "06",
@@ -578,6 +582,7 @@ function Services({ t }) {
             <div className="svc__row-open">
               <div className="svc__row-open-inner">
                 <p className="svc__desc">{s.desc}</p>
+                {s.note && <p className="svc__note mono">{s.note}</p>}
                 <div className="svc__tags">
                   {s.tags.map((tag) => (
                     <span key={tag} className="svc__tag mono">{tag}</span>
