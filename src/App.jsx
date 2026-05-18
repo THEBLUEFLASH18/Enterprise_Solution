@@ -772,7 +772,7 @@ function Contact({ t }) {
         <div className="ccard">
           <div className="ccard__k mono">WHATSAPP</div>
           <div className="ccard__v">
-            <a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer">+1 (813) 476-0188</a>
+            <a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag_report_conversion()}>+1 (813) 476-0188</a>
           </div>
         </div>
         <div className="ccard">
@@ -816,7 +816,7 @@ function Footer({ t, onNav }) {
             <div className="ftr__k mono">CONTACT</div>
             <ul>
               <li><a href="mailto:ventas@cygsolution.com">ventas@cygsolution.com</a></li>
-              <li><a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer">+1 (813) 476-0188</a></li>
+              <li><a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag_report_conversion()}>+1 (813) 476-0188</a></li>
               <li>Miami, FL</li>
             </ul>
           </div>
@@ -825,7 +825,7 @@ function Footer({ t, onNav }) {
             <ul>
               <li><a href="https://www.facebook.com/share/HcJLSEEMffhgtDVW/" target="_blank" rel="noopener noreferrer">Facebook ↗</a></li>
               <li><a href="https://www.instagram.com/cygenterprisesolution" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
-              <li><a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+              <li><a href="https://wa.me/18134760188" target="_blank" rel="noopener noreferrer" onClick={() => window.gtag_report_conversion()}>WhatsApp ↗</a></li>
             </ul>
           </div>
         </div>
